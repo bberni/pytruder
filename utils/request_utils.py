@@ -1,0 +1,48 @@
+import re
+import ast
+import requests
+
+SPECIAL_SYMBOL = '$'
+
+def modify_request(raw_request, payload): 
+    if SPECIAL_SYMBOL in raw_request:
+        raw_request = raw_request.split(SPECIAL_SYMBOL)
+        raw_request[1] = requests.utils.quote(payload) #exprimental 
+    
+    return ''.join(raw_request)
+    
+
+def parse_request(request):
+    method = re.findall(r'[A-Z]*\S', request)[0]
+    request = re.sub(r'[A-Z]*\S', '', request, 1) 
+    url = re.findall(r'\/\S*', request)[0]
+    request = re.sub(r'\/\S*','', request, 1)
+    header_dump = re.findall(r'.*:.*[^\n]', request)
+    request = re.sub(r'.*:.*[^\n]', '', request)
+    headers = []
+    for header in header_dump: 
+        header = list(header)
+        header.insert(0, '"')
+        header.append('"')
+        header.insert(header.index(':'), '"')
+        header.insert(header.index(':') + 2, '"')
+        headers.append(''.join(header))
+    headers = ast.literal_eval('{' + ','.join(headers) + '}')
+    request = re.sub(r'HTTP\S*', '', request)
+    request = re.sub('\n', '', request)
+    body = request.strip()
+
+    return method, url, headers, body
+
+def send_request(method: str, url: str, data: str, headers: dict = {}, timeout: int = 10):
+    response = requests.request(method=method, url=url, headers=headers, data=data, timeout=timeout)
+    
+    return response
+
+def guess_protocol(args): 
+    method, url, headers, body = args
+    try: 
+        send_request(method=method, url='https://' + headers['Host'] + url, data=body, headers=headers)
+        return "https"
+    except requests.exceptions.SSLError: 
+        return "http"
