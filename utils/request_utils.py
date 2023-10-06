@@ -7,7 +7,7 @@ SPECIAL_SYMBOL = '$'
 def modify_request(raw_request, payload): 
     if SPECIAL_SYMBOL in raw_request:
         raw_request = raw_request.split(SPECIAL_SYMBOL)
-        raw_request[1] = requests.utils.quote(payload) #exprimental 
+        raw_request[1] = requests.utils.quote(payload)
     
     return ''.join(raw_request)
     

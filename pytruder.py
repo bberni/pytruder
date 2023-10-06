@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import argparse
 import sys
-import pynput
 from utils.request_utils import * 
 from utils.table_utils import *
 from utils.response_utils import * 
