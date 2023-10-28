@@ -1,10 +1,23 @@
 #!/usr/bin/python3
 import argparse
-import sys
+import concurrent.futures
 from utils.request_utils import * 
 from utils.table_utils import *
 from utils.response_utils import * 
-
+from time import sleep
+def run(index, p):
+    global responses
+    global protocol
+    global request
+    method, url, headers, body = parse_request(modify_request(request, p)) 
+    response = send_request(method=method, url=protocol + '://' + headers['Host'] + url, data=body, headers=headers)
+    response_number = str(index)
+    payload_text = p
+    status_code = str(response.status_code)
+    response_time = str(round(response.elapsed.total_seconds() * 1000))
+    response_length = str(len(response.content)) 
+    responses.append(response)
+    print(create_row(response_number, payload_text, status_code, response_time, response_length, index))
 
 def main(): 
     parser = argparse.ArgumentParser()
@@ -26,16 +39,8 @@ def main():
 
     responses = []
     protocol = guess_protocol(parse_request(modify_request(request, payloads[0])))
-    for index, p in enumerate(payloads):
-        method, url, headers, body = parse_request(modify_request(request, p)) 
-        response = send_request(method=method, url=protocol + '://' + headers['Host'] + url, data=body, headers=headers)
-        response_number = str(index)
-        payload_text = p
-        status_code = str(response.status_code)
-        response_time = str(round(response.elapsed.total_seconds() * 1000))
-        response_length = str(len(response.content)) 
-        responses.append(response)
-        print(create_row(response_number, payload_text, status_code, response_time, response_length, index))
+    for i, p in enumerate(payloads):
+        run(i, p)
     print_border()
     while True: 
         choice = input("Enter 1 to view a response, 2 to save a response, or 3 to exit and press ENTER: ")

@@ -1,0 +1,19 @@
+POST /login HTTP/2
+Host: 0acd006e03f2288b84324b07001a0080.web-security-academy.net
+Cookie: session=vwZ1CDLoLTajsEhf9x8OKUgraKi8PtmX
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: pl,en-US;q=0.7,en;q=0.3
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 21
+Origin: https://0acd006e03f2288b84324b07001a0080.web-security-academy.net
+Referer: https://0acd006e03f2288b84324b07001a0080.web-security-academy.net/login
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Te: trailers
+
+username=$a$&password=a
