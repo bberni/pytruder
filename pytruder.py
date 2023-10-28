@@ -5,6 +5,7 @@ from utils.request_utils import *
 from utils.table_utils import *
 from utils.response_utils import * 
 from time import sleep
+
 def run(index, p):
     global responses
     global protocol
@@ -19,7 +20,10 @@ def run(index, p):
     responses.append(response)
     print(create_row(response_number, payload_text, status_code, response_time, response_length, index))
 
-def main(): 
+def main():
+    global responses
+    global protocol
+    global request
     parser = argparse.ArgumentParser()
     parser.add_argument('request', type=str, help=f'add a request file with {SPECIAL_SYMBOL} markings')
     parser.add_argument('payload', type=str, help='add payload file with inputs separated by newlines')
