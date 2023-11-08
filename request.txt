@@ -1,14 +1,14 @@
 POST /login HTTP/2
-Host: 0ac1003e04f4e11c8096e015002b0008.web-security-academy.net
-Cookie: session=YtlhJXzDOIc1GHAtqouiJusTFP20rPuw
+Host: 0aa4008903a0d2e18167c0b900cf0003.web-security-academy.net
+Cookie: session=Y5zbbyxNGGCUvNHVnbchQrfHXW50sJuy
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
 Accept-Language: pl,en-US;q=0.7,en;q=0.3
-Accept-Encoding: gzip, deflate
+Accept-Encoding: gzip, deflate, br
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 21
-Origin: https://0ac1003e04f4e11c8096e015002b0008.web-security-academy.net
-Referer: https://0ac1003e04f4e11c8096e015002b0008.web-security-academy.net/login
+Origin: https://0aa4008903a0d2e18167c0b900cf0003.web-security-academy.net
+Referer: https://0aa4008903a0d2e18167c0b900cf0003.web-security-academy.net/login
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
 Sec-Fetch-Mode: navigate
@@ -16,4 +16,4 @@ Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 Te: trailers
 
-username=$a$&password=a
+username=au&password=$a$
