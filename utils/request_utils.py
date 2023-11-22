@@ -1,7 +1,7 @@
 import re
 import ast
 import requests
-
+import sys
 SPECIAL_SYMBOL = "$"
 
 
@@ -32,7 +32,6 @@ def parse_request(request):
     request = re.sub(r"HTTP\S*", "", request)
     request = re.sub("\n", "", request)
     body = request.strip()
-    print(method, url, headers, body)
     return method, url, headers, body
 
 

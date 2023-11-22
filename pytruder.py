@@ -65,7 +65,7 @@ def main():
     print(create_row("Request", "Payload", "Status Code", "Response Time", "Length", 0))
     print_border()
 
-    responses = []
+    responses = []    
     protocol = guess_protocol(parse_request(modify_request(request, payloads[0])))
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for result in executor.map(run, enumerate(payloads)):

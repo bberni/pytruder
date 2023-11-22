@@ -1,19 +1,20 @@
-POST /login HTTP/2
-Host: 0aa4008903a0d2e18167c0b900cf0003.web-security-academy.net
-Cookie: session=Y5zbbyxNGGCUvNHVnbchQrfHXW50sJuy
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0
+POST /login HTTP/1.1
+Host: 0a0f00e603e4868784820e9c005e008b.web-security-academy.net
+Cookie: session=LLeRVKoBNXK9pPt1h6HasClg2zRVDoUF
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
-Accept-Language: pl,en-US;q=0.7,en;q=0.3
+Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate, br
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 21
-Origin: https://0aa4008903a0d2e18167c0b900cf0003.web-security-academy.net
-Referer: https://0aa4008903a0d2e18167c0b900cf0003.web-security-academy.net/login
+Origin: https://0a0f00e603e4868784820e9c005e008b.web-security-academy.net
+Referer: https://0a0f00e603e4868784820e9c005e008b.web-security-academy.net/login
 Upgrade-Insecure-Requests: 1
 Sec-Fetch-Dest: document
 Sec-Fetch-Mode: navigate
 Sec-Fetch-Site: same-origin
 Sec-Fetch-User: ?1
 Te: trailers
+Connection: close
 
-username=au&password=$a$
+username=asia&password=$a$
