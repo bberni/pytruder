@@ -24,6 +24,8 @@ def save_response(index: int, responses: list[requests.Response]):
 
 
 def view_in_browser(index: int, base_url: str, responses: list[requests.Response]):
+    # funkcja odpowiedzialna za wyświetlanie odpowiedzi w przeglądarce
+    # zamienia relatywne URL na absolutne w celu poprawnego wyświetlania
     html = responses[index].content.decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     for element in soup.find_all(["a", "link", "script", "img"]):

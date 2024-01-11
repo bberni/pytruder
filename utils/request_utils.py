@@ -6,6 +6,7 @@ SPECIAL_SYMBOL = "$"
 
 
 def modify_request(raw_request, payload):
+    # "tnie" zaypytanie na trzy części i zamienia środkową na wyraz ze słownika
     if SPECIAL_SYMBOL in raw_request:
         raw_request = raw_request.split(SPECIAL_SYMBOL)
         raw_request[1] = requests.utils.quote(payload)
@@ -14,6 +15,8 @@ def modify_request(raw_request, payload):
 
 
 def parse_request(request):
+    # zamienia zapytanie HTTP w formie tekstowej na słownik,
+    # którego może użyć biblioteka requests
     method = re.findall(r"[A-Z]*\S", request)[0]
     request = re.sub(r"[A-Z]*\S", "", request, 1)
     url = re.findall(r"\/\S*", request)[0]
@@ -46,6 +49,7 @@ def send_request(
 
 
 def guess_protocol(args):
+    #zgaduje protokół -> HTTP albo HTTPS
     method, url, headers, body = args
     try:
         send_request(

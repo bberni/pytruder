@@ -9,6 +9,7 @@ import time
 
 
 def run(args: tuple):
+    #funkcja bezpośrednio odpowiedzialna za wysyłanie zapytania HTTP i przetwarzanie odpowiedzi
     global protocol
     global request
     index = args[0]
@@ -49,16 +50,16 @@ def main():
     parser.add_argument(
         "payload", type=str, help="add payload file with inputs separated by newlines"
     )
-    args = parser.parse_args()
+    args = parser.parse_args() #przetwarzanie argumentów z CLI
 
     request_file = args.request
     payload_file = args.payload
 
-    with open(request_file, "r") as f:
+    with open(request_file, "r") as f: # wczytywanie pliku z zapytaniem HTTP
         request = f.read()
         host = re.findall(r"Host: \S*", request)[0][6:]
         print(host)
-    with open(payload_file, "r") as f:
+    with open(payload_file, "r") as f: # wczytywanie pliku ze słownikiem
         payloads = f.read().split("\n")
 
     print_border()
@@ -66,15 +67,16 @@ def main():
     print_border()
 
     responses = []    
-    protocol = guess_protocol(parse_request(modify_request(request, payloads[0])))
+    protocol = guess_protocol(parse_request(modify_request(request, payloads[0]))) 
     with concurrent.futures.ThreadPoolExecutor() as executor:
+        #żeby znacząco przyspieszyć wysyłanie zapytań stosujemy multithreading
         for result in executor.map(run, enumerate(payloads)):
             print(create_row(*result[0]))
             responses.append(result[1])
 
     print_border()
     print(time.perf_counter() - t1)
-    while True:
+    while True: # główna pętla programu
         choice = input(
             "Enter 1 to view a response, 2 to save a response, 3 to view response in browser, or 4 to exit and press ENTER: "
         )
